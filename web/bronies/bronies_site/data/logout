@@ -1,0 +1,15 @@
+<?php
+mysql_connect("localhost","root","123456");
+mysql_select_db("bronies");
+
+if (isset($_SESSION['uid'])) {
+  $q = mysql_query("select username from users where id=".$_SESSION['uid']);
+  $res = mysql_fetch_object($q);
+  echo sprintf("We love you %s, come back again soon!",$res->username);
+header("refresh:2; url=/index.php");    
+  unset($_SESSION['uid']);
+}
+else {
+  echo "You're a silly pony, you weren't even logged in!";
+}
+?>

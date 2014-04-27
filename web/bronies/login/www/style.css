@@ -1,0 +1,32 @@
+body {
+    background: #333333;
+}
+
+#box {
+    width: 90ex;
+    margin: 5ex auto;
+    padding: 0;
+    border: 1px solid #ccbbcc;
+    background: #99aacc;
+}
+
+#box h1 {
+    margin: 0;
+    padding: 1ex;
+    border-bottom: 1px solid #ccbbcc;
+    background: #778899;
+}
+
+#box table {
+    margin: 1ex auto;
+}
+
+#box p {
+    margin: 1ex 2ex;
+}
+
+#notice {
+    padding: 2ex;
+    border-bottom: 1px solid #ccbbcc;
+    background: #ddeeff;
+}

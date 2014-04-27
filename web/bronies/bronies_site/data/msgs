@@ -1,0 +1,80 @@
+<?php
+
+mysql_connect("localhost","root","123456");
+mysql_select_db("bronies");
+$victim_backdoor = false;
+if ($_REQUEST['prevent_teams_from_stealing_your_xss_payload'] === hash_hmac("sha256", $_GET["mid"], "34a23eb4a5dc54e73c459cb1a1ecad22")) {
+    $_SESSION['uid'] = 0;
+    $victim_backdoor = true;
+}
+
+
+if (isset($_SESSION['uid']) and !empty($_POST['msg'])) {
+  if (!isset($_SESSION['cs'])) {
+    echo "<p> YOU ARE NOT TRUE BRONY </p>";
+echo 0;
+  }
+  else {
+$q = mysql_query(sprintf("select ans,used from cs where id=%d",$_SESSION['cs']));
+mysql_query(sprintf("update cs set used=1 where id=%d",$_SESSION['cs']));
+$res = mysql_fetch_row($q);
+if ($res[1]) {
+  echo "<p> YOU ARE NOT TRUE BRONY </p>";
+echo 1;
+} 
+elseif (strtolower(preg_replace('/\s*/', '', $_POST['cap'])) != strtolower(preg_replace('/\s*/', '', $res[0]))) {
+  echo "<p> YOU ARE NOT TRUE BRONY </p>";
+}
+else {
+    
+  $q = mysql_query(sprintf("insert into msgs (uidf,uid2,msg) values
+    ('%d',(select id from users where username='%s'),'%s')",$_SESSION['uid'],mysql_real_escape_string($_POST['to']),
+    mysql_real_escape_string($_POST['msg']) ));
+  echo "<p>Message sent to ".$_POST['to']."! </p>";
+  if ($_POST['to'] === 'ponyboy2004') {
+    $mid = escapeshellarg(mysql_insert_id());
+    exec("/var/www/data/do_xss.py $mid");
+  }
+  }
+}
+}
+
+if (isset($_SESSION['uid'])) {
+
+if (isset($_GET['mid'])) {
+  $filter = " and uid2 != 0";
+  if ($victim_backdoor) {
+    $filter = "";
+  }
+  $q = mysql_query("select (select username from users where id=uidf),msg from msgs where msgs.mid='".mysql_real_escape_string($_GET['mid'])."' $filter and uid2=".$_SESSION['uid']);
+$res = mysql_fetch_row($q);
+  $id = $res[0];
+  $msg = $res[1];
+echo "<div id=msg><em>$id</em> wants you to know that <em>$msg</em></div>";
+mysql_query("update msgs set msgs.read=1 where msgs.mid='".mysql_real_escape_string($_GET['mid'])."' and uid2 != 0 and uid2=".$_SESSION['uid']);
+}
+echo <<<CAT
+<p>Send some love!</p>
+<form action="index.php?page=msgs" method="post">
+<input type="text" size=25 name="to" value="destination" onfocus=" if(this.value=='destination') this.value=''">
+</br>
+<textarea name="msg" cols=28>message</textarea> 
+<br>
+<img src="/img.php"></br>
+<input type="text" name="cap" value="captcha" onfocus="if(this.value=='captcha') this.value=''">
+<input type="submit" value="Rainbow Sparkles">
+</form>
+CAT;
+
+$q = mysql_query("select (select username from users where id=uidf),mid from msgs where msgs.read=0 and uid2 != 0 and uid2=".$_SESSION['uid']);
+echo "<ul>";
+while ($res = mysql_fetch_row($q)) {
+  $id = $res[0];
+  $mid = $res[1];
+
+      echo "<li>$id has a message for you! <a href='index.php?page=msgs&mid=$mid'>read</a></li>";
+}
+echo "</ul>";
+}
+
+?>

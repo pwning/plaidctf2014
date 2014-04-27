@@ -1,0 +1,72 @@
+p {
+        font-family: sans-serif;
+	font-size: 22px;
+}
+a{
+        color: white;
+        font-size: 32px;
+        font-family: sans-serif;
+        text-decoration: none;
+        vertical-align: middle;
+}
+a.other {
+        color: black;
+        vertical-align: top;
+}
+a:hover {
+        text-decoration: underline;
+}
+input
+{
+  -moz-border-radius: 5px;
+ border-radius: 5px;
+    border:solid 1px pink;
+    padding:5px;
+    font-size: 20px;
+}
+textarea
+{
+  -moz-border-radius: 5px;
+ border-radius: 5px;
+    border:solid 1px pink;
+    padding:5px;
+    font-size: 20px;
+}
+#links {
+        margin-left: auto;
+        margin-right: auto;
+        background: pink;
+        opacity: 0.6;
+        height: 42px;
+        width: 90%;
+	border-radius:18px;
+}
+#links li {
+        width: 25%;
+        text-align: center;
+        display:-moz-inline-block;
+        display:-moz-inline-box;
+        display:inline-block;
+}
+body {
+        margin:0;
+        padding:0;
+        background: url('mlp.jpg');
+	font-size: 22px;
+}
+#msg {
+	border: 2px solid purple;
+	padding: 8px;
+	border-radius:8px;
+	display: inline-block;
+}
+
+#box {
+        background: rgba(255,255,255,0.5) ;
+        margin: auto;
+        width: 85%;
+        border: 10px solid pink;
+	border-radius:35px;
+        padding: 16px;
+	font-size: 22px;
+}
