@@ -1,0 +1,35 @@
+Silly and kind of crazy web problem:
+we host a server (MUST HAVE IPv6 ADDRESS)
+ideally with an smtp server installed as well
+
+to setup: host the to_host folder, as well as the source.tar file
+initialize the database with database.sql
+
+Source is given (linked to on the page)
+goal is SQL injection, to read the flag column from the flag table
+
+the vuln:
+when resetting an account, the information on the client is saved.
+this information includes dns_get_record of the reverse dns of the host
+the host is mysql escaped, but not the dns record
+putting sql injection in the txt record of the host allows sql injection
+
+The method I used to do this:
+create an ipv6 tunnel account at hurricane electric
+they let you specify reverse dns information. point reverse dns of your
+ip to secret3.copyfighter.org
+
+this has a txt entry of "*/', email=(select flag from flag), resetinfo='/*"
+
+this will set the email of the user to the result of that select query
+the comments are needed because the way the dns information is stored
+(and printed to the user in email, for helpful debugging :P)
+it is repeated, so the comments make it count only one time
+
+then you reset the password a second time, which will print the
+email address of the account
+
+(at first I used the username field, but the database requires this to
+be unique so it failed... contestants will be able to see this, because
+trying to register an account that already exists will simply print out the
+error)

@@ -1,0 +1,42 @@
+<?php
+
+mysql_connect("localhost","root","123456");
+mysql_select_db("whatscat");
+
+if (isset($_SESSION['uid']) and !empty($_POST['comment'])) {
+  $q = mysql_query(sprintf("insert into comments (uid,pid,comment) values
+    ('%s','%d','%s')",$_SESSION['uid'],$_POST['pid'],
+    mysql_real_escape_string(substr($_POST['comment'],0,50)) ));
+}
+
+$q = mysql_query("select pid,path from pictures");
+while ($res = mysql_fetch_object($q)) {
+  $id = $res->pid;
+  $path = $res->path;
+
+  echo "<figure class='annotated'>";
+  echo "<img src='imgs/$path'>";
+  $q2 = mysql_query("select (select username from users where uid = id),comment from comments where pid=$id");
+  if ($q2) {
+    echo "<figcaption><ul>";
+    while ($res2 = mysql_fetch_row($q2)) {
+      echo sprintf("<li style='top:%dpx; left:%dpx;'>%s says: %s</li>",
+        rand(0,200),rand(0,400),htmlentities($res2[0]),htmlentities($res2[1]));
+    }
+    echo "</ul></figcaption>";
+  }
+if (isset($_SESSION['uid'])) {
+echo <<<CAT
+<figcaption>
+<form action="index.php?page=cat" method="post">
+<input type="text" name="comment" value="put your own comment here!">
+<input type="hidden" name="pid" value=$id>
+<input type="submit" value=" ">
+</form>
+</figcaption>
+CAT;
+}
+  echo "</figure>";
+}
+
+?>

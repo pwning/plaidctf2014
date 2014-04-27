@@ -1,0 +1,7 @@
+{% include "head.html" %}
+<form action="/register" method="POST">
+<input type="text" name="username" value="username" onfocus="if(this.value=='username') this.value=''"><br>
+<input type="password" name="password" value="password" onfocus="if(this.value=='password') this.value=''"><br>
+{% csrf_token %}
+<input type="submit" value="Register">
+</form>

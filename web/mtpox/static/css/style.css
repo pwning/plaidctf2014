@@ -1,0 +1,23 @@
+body {
+    padding-top: 70px;
+}
+
+table, th{
+    text-align: center;
+}
+
+.status-yes {
+    color: green;
+}
+
+.status-broken,
+.status-no {
+    font-weight: bold;
+    color: red;
+}
+
+.grid_service a,
+.grid_team a {
+    color: black;
+    text-decoration:none;
+}

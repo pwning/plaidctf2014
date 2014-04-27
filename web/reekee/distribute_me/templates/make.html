@@ -1,0 +1,16 @@
+{% include "head.html" %}
+If you're done with memes for now, you can <a href="/logout">logout</a>.
+
+<form action="/make" method="POST">
+<input type="text" name="url" value="web address" onfocus="if(this.value=='web address') this.value=''"><br>
+<input type="text" name="text" value = "meme text" onfocus="if(this.value=='meme text') this.value=''"><br>
+{% csrf_token %}
+<input type="submit" value="Make Meme">
+</form>
+
+<h2>Your memes</h2>
+{% for f in files %}
+<img src="/view/{{ f }}"></br>
+{% endfor %}
+
+<p>Note memes are currently not shareable. If you would like to share your creations, please download them and upload them to your favorite image hosting website</p>

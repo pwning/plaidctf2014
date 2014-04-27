@@ -1,0 +1,55 @@
+mserrano@euler ~/hm% python client.py
+Block size 24
+Feistel, so we need 2 7 bit pools.
+Compared to a 24 bit bruteforce.
+Our total runtime will be O(2^26) compared to O(2^42.0) for bruteforce.
+So, we need a 12 bit prefix/postfix.
+Our prefix will be 0xfff
+But it doesn't actually matter what it is.
+Okay, we have our plaintext pools.
+Now go get ciphertexts.
+Got first pool. 13.8609449863
+Got ciphertexts.
+27.7637848854
+Okay, now we need to be clever.
+Outer iteration 0 7.86781311035e-06
+Outer iteration 1 0.675776958466
+Outer iteration 2 1.34178495407
+Outer iteration 3 2.02189302444
+Outer iteration 4 2.69539499283
+Outer iteration 5 3.38463783264
+Outer iteration 6 4.04581284523
+Outer iteration 7 4.71696281433
+Outer iteration 8 5.39439487457
+Outer iteration 9 6.07403588295
+Outer iteration 10 6.74686098099
+Outer iteration 11 7.43512201309
+Outer iteration 12 8.14160203934
+Outer iteration 13 8.82401490211
+Outer iteration 14 9.51371002197
+Outer iteration 15 10.2053599358
+Outer iteration 16 10.907130003
+Outer iteration 17 11.6007759571
+Outer iteration 18 12.2856488228
+Outer iteration 19 12.9789068699
+Outer iteration 20 13.657984972
+Outer iteration 21 14.3479809761
+Outer iteration 22 15.0410718918
+Outer iteration 23 15.7365038395
+Outer iteration 24 16.4958968163
+Outer iteration 25 17.1787438393
+Outer iteration 26 17.8528800011
+Outer iteration 27 18.5410439968
+Outer iteration 28 19.226929903
+Outer iteration 29 19.9167859554
+Outer iteration 30 20.5939748287
+Outer iteration 31 21.2792258263
+Outer iteration 32 21.968200922
+Outer iteration 33 22.6377549171
+Outer iteration 34 23.3202588558
+Outer iteration 35 23.9967238903
+Outer iteration 36 24.6890740395
+Outer iteration 37 25.3801848888
+Found a slid pair!
+Resulting key (2633, 3247)
+Gotta love it when you can SLIDE. The flage is id_almost_rather_be_sledding

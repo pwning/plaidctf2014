@@ -1,0 +1,105 @@
+img.logo {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+}
+p {
+        font-family: sans-serif;
+}
+a{
+        color: white;
+        size: 18px;
+        font-family: sans-serif;
+        text-decoration: none;
+        vertical-align: middle;
+}
+a.other {
+        color: black;
+        vertical-align: top;
+}
+a:hover {
+        text-decoration: underline overline;
+}
+#links {
+        margin-left: auto;
+        margin-right: auto;
+        background: purple;
+        opacity: 0.6;
+        height: 21px;
+        width: 75%;
+}
+#links li {
+        width: 15%;
+        text-align: center;
+        display:-moz-inline-block;
+        display:-moz-inline-box;
+        display:inline-block;
+}
+body {
+        margin:0;
+        padding:0;
+        background: #d6d6cc url('cat.jpg') repeat;
+}
+#box {
+        background: rgba(255,255,255,0.5) ;
+        margin: auto;
+        width: 75%;
+        border: 3px solid #555;
+        padding: 16px;
+}
+#inbox {
+        color: #000;
+}
+#footer {
+        margin: auto;
+        width: 80%;
+        text-align: center;
+        font-size:8.5px;
+        color: #555;
+}
+.annotated{
+  position:relative;
+  /*display:inline-block; If you do not need to support IE7 and below uncomment this line and remove the inline width and height styles on the <figure> in your markup. */
+}
+.annotated img{ /* Set this to stop white-space appearing under the image. */
+  display:block;
+}
+.annotated b{ /* Hide the figcaption’s title. */
+  position:absolute;
+  left:-99999px;
+}
+.annotated ul{ /* Set up the canvas for the annotations to sit on. */
+  list-style:none;
+  position:absolute; 
+  top:0;
+  right:0;
+  bottom:0;
+  left:0;
+}
+.annotated li{
+  display:block;
+  padding:0 5px;
+  /* Give them a width and a line-height suitable for your kind of images. I chose 50px. */
+  width:20px; /* 40px + 5px padding-right  + 5px padding-left = 50px */
+  line-height:30px;
+  position:absolute;
+  text-indent:-99999px; /* Hide the text off-screen. */
+  white-space:nowrap; /* Stop the annotations breaking onto several lines. */
+  cursor:default;
+}
+.annotated:hover li{ /* When we hover the figure show us where the annotations are. */
+  border:1px solid #fff;
+}
+.annotated li:hover { /* Show the text on hover. */
+  background:#fff;
+  background:rgba(255,255,255,0.75);
+  z-index:2; /* Bring current annotation above others. */
+  /* Remove the width and text-indent to show us our text! */
+  width:auto;
+  text-indent:0;
+
+  /* A bit o’ progressive enhancement */
+  -webkit-box-shadow:0 0 5px rgba(0,0,0,0.25);
+     -moz-box-shadow:0 0 5px rgba(0,0,0,0.25);
+         box-shadow:0 0 5px rgba(0,0,0,0.25);
+} 

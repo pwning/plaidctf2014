@@ -1,0 +1,6 @@
+{% include "head.html" %}
+{% if auth %}
+Head on over <a href="/make">here</a> to make/view your super awesome memes. If you're done with memes for now, you can <a href="/logout">logout</a>.
+{% else %}
+In order to create your own super awesome memes, you must <a href="/login">login</a>.
+{% endif %}

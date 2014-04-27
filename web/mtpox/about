@@ -1,0 +1,34 @@
+<html>
+  <head>
+    <title>Magic the Plaidering Online Exchange: About</title>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="/static/css/style.css" type="text/css" />
+    <script type="text/javascript" src="/static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="/index.php?page=index">Magic the Plaidering Online Exchange</a>
+        <ul class="nav navbar-nav">
+          <li><a href="/index.php?page=index">Index</a></li>
+          <li><a href="/index.php?page=about">About</a></li>
+          <li><a href="#">PlaidCoins (under maintenance)</a></li>
+          <li><a href="#">PlaidCards (under maintenance)</a></li>
+          <li><a href="/admin.php">Admin</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="panel">
+          <p>The Magic the Plaidering Online Exchange is a service made available in the hope that people will exchange their Magic the Plaidering cards online, as well as possibly their
+PlaidCoins, a new revolutionary cryptocurrency. In order to keep our users safe, we make sure to authenticate admin cookies using an 8-byte salt. We figure that's too
+many bits to brute-force.</p>
+          <p>This service is made available in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+

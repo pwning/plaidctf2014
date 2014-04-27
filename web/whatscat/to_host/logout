@@ -1,0 +1,11 @@
+<?php
+if (isset($_SESSION['uid'])) {
+  $q = mysql_query("select username from users where id=".$_SESSION['uid']);
+  $res = mysql_fetch_object($q);
+  echo sprintf("Goodbye %s, come back again soon!",$res->username);
+  unset($_SESSION['uid']);
+}
+else {
+  echo "You weren't even logged in, silly!";
+}
+?>

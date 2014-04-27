@@ -1,0 +1,9 @@
+Okay, this isn't /really/ a forensics problem, but why not beef up our forensics
+category? This is like real world forensics, which just happens to be crypto.
+
+Anyway, participants are given a printout of openssl dumping an RSA key.
+However, a lot of it has been corrupted! ~70% of the bytes have been erased.
+
+They need to use fancy maths to recover the RSA key, which is very doable, but
+also very non-trivial. We should also make it clear that this is a crypto
+challenge, not a forensics challenge.

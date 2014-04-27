@@ -1,0 +1,9 @@
+A simple betting game.
+
+User connects and the server and a "session" starts. The server generates a
+nonce for the session, and asks the user to input their own nonce. The server
+requests the odds the user wants and then the user's guess. If 
+sha1(server_nonce+user_nonce)%odds == user_guess, they win.
+
+To verify the server isn't cheating, the user can request for the server_nonce
+to be displayed, which will also reset the server_nonce to something else.

@@ -1,0 +1,5 @@
+Put up the PHP somewhere on a webserver, run db.sql to create the db; have the
+creds match data.php.
+
+Put flag somewhere on the machine that is not accessible from the web - make them get code-exec to do it.
+Alternatively put it in /home/flag/flag and write a setuid binary the way ryan and tyler have been doing it.
