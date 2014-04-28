@@ -1,0 +1,1 @@
+openssl req -x509 -newkey rsa:2048 -nodes -days 100 -keyout pem.pem -out pem.pem -extensions v3_req  -subj '/C=US/O=Plaid Parliament of Pwning/CN=curlcore.local.plaidctf.com'
